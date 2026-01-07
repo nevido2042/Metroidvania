@@ -22,6 +22,7 @@ public class PlayerAnim : PawnAnim
 
     public override void EndHurt()
     {
+        InactiveHitBox();
         pawn.isHurt = false;
         player.isDash = false;
     }

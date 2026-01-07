@@ -20,6 +20,5 @@ public abstract class PawnAnim : MonoBehaviour
     {
         pawn.hitBox.enabled = false;
     }
-
     public abstract void EndHurt();
 }

@@ -12,6 +12,8 @@ public class EnemyAnim : PawnAnim
 
     public override void EndHurt()
     {
+        InactiveHitBox();
+        pawn.isAttack = false;
         pawn.isHurt = false;
     }
 
