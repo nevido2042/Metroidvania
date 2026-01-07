@@ -11,6 +11,9 @@ public class Enemy : Pawn
     public float moveSpeed;
     public float stopDistance = 0.5f;
 
+    [Header("#Sound")]
+    AudioSource audio;
+
     [Header("#Render")]
     SpriteRenderer spriteRenderer;
     Animator animator;
@@ -19,7 +22,7 @@ public class Enemy : Pawn
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-
+        audio = GetComponent<AudioSource>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
     }
@@ -64,6 +67,7 @@ public class Enemy : Pawn
     {
         if(collision.name == "HitBox")
         {
+            audio.Play();
             animator.SetTrigger("Hurt");
         }
     }
