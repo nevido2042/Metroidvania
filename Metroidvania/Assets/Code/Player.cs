@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (value.isPressed && isGrounded)
+        if (value.isPressed && !animator.GetBool("Jump"))
         {
             Jump();
         }
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        animator.SetTrigger("Jump");
+        animator.SetBool("Jump", true);
         rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
@@ -76,6 +76,9 @@ public class Player : MonoBehaviour
        isGrounded ? Color.green : Color.red);
 
         isGrounded = hit.collider != null;
+
+        if (isGrounded)
+            animator.SetBool("Jump", false);
     }
 
     void LateUpdate()
@@ -92,5 +95,6 @@ public class Player : MonoBehaviour
         }
 
         animator.SetFloat("Speed", inputVec.magnitude);
+        animator.SetFloat("VelocityY", rigid.linearVelocityY);
     }
 }
