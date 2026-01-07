@@ -12,4 +12,15 @@ public class PlayerAnim : MonoBehaviour
     {
         player.isDash = false;
     }
+
+    public void EndAttack()
+    {
+        player.isAttack = false;
+    }
+
+    public void EndDashAttack()
+    {
+        player.isDash = false;
+        player.isAttack = false;
+    }
 }

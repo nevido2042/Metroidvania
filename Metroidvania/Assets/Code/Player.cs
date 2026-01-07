@@ -22,7 +22,11 @@ public class Player : MonoBehaviour
     [Header("#Dash")]
     public float dashPower;
     public bool isDash;
-    InputAction DashAction;
+    InputAction dashAction;
+
+    [Header("#Attack")]
+    InputAction attackAction;
+    public bool isAttack;
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -38,14 +42,20 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
 
-        DashAction = InputSystem.actions.FindAction("Dash");
+        dashAction = InputSystem.actions.FindAction("Dash");
+        attackAction = InputSystem.actions.FindAction("Attack");
     }
 
     private void Update()
     {
-        if(DashAction.IsPressed())
+        if(dashAction.IsPressed())
         {
             Dash();
+        }
+
+        if(attackAction.IsPressed())
+        {
+            Attack();
         }
     }
 
@@ -68,16 +78,7 @@ public class Player : MonoBehaviour
 
     void LateUpdate()
     {
-        if (inputVec.x != 0)
-        {
-            spriteRenderer.flipX = inputVec.x < 0;
-
-            if (spriteRenderer.flipX)
-                animator.transform.localPosition = LeftOffset;
-            else
-                animator.transform.localPosition = RightOffset;
-
-        }
+        Flip();
 
         animator.SetFloat("Speed", inputVec.magnitude);
         animator.SetFloat("VelocityY", rigid.linearVelocityY);
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        if (isDash)
+        if (isDash || isAttack)
             return;
 
         rigid.linearVelocityX = inputVec.x * speed;
@@ -106,6 +107,9 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
+        if (isAttack)
+            return;
+
         animator.SetBool("Jump", true);
         rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
@@ -132,6 +136,9 @@ public class Player : MonoBehaviour
 
     void Dash()
     {
+        if (isAttack)
+            return;
+
         if (isDash)
             return;
 
@@ -143,4 +150,30 @@ public class Player : MonoBehaviour
         rigid.AddForceX(dashPower * dir, ForceMode2D.Impulse);
     }
 
+    void Attack()
+    {
+        if (isAttack)
+            return;
+
+        isAttack = true;
+        animator.SetTrigger("Attack");
+
+    }
+
+    void Flip()
+    {
+        if (isAttack)
+            return;
+
+        if (inputVec.x != 0)
+        {
+            spriteRenderer.flipX = inputVec.x < 0;
+
+            if (spriteRenderer.flipX)
+                animator.transform.localPosition = LeftOffset;
+            else
+                animator.transform.localPosition = RightOffset;
+
+        }
+    }
 }
