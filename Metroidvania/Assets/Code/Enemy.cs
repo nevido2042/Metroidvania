@@ -99,5 +99,8 @@ public class Enemy : Pawn
         isAttack = true;
         lastAttackTime = Time.time;
         animator.SetTrigger("Attack");
+
+        float dir = isLeft ? 1f : -1f;
+        hitBox.transform.localPosition = hitboxOffset * dir;
     }
 }
