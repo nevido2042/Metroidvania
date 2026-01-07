@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,13 +8,21 @@ using static UnityEngine.UI.Image;
 
 public class Player : MonoBehaviour
 {
+    [Header("#Move")]
     public Vector2 inputVec;
-    public bool jumpPressed;
     public float speed;
+
+    [Header("#Jump")]
+    public bool jumpPressed;
     public bool isGrounded;
     public float jumpForce;
     public float groundCheckDistance;
     public LayerMask groundLayer;
+
+    [Header("#Dash")]
+    public float dashPower;
+    public bool isDash;
+    InputAction DashAction;
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -28,6 +37,16 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
+
+        DashAction = InputSystem.actions.FindAction("Dash");
+    }
+
+    private void Update()
+    {
+        if(DashAction.IsPressed())
+        {
+            Dash();
+        }
     }
 
     private void Start()
@@ -37,9 +56,31 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigid.linearVelocityX = inputVec.x * speed;
+        Move();
 
-        CheckGround();
+        //떨어질때 체크
+        if (rigid.linearVelocityY < 0)
+        {
+            CheckGround();
+        }
+
+    }
+
+    void LateUpdate()
+    {
+        if (inputVec.x != 0)
+        {
+            spriteRenderer.flipX = inputVec.x < 0;
+
+            if (spriteRenderer.flipX)
+                animator.transform.localPosition = LeftOffset;
+            else
+                animator.transform.localPosition = RightOffset;
+
+        }
+
+        animator.SetFloat("Speed", inputVec.magnitude);
+        animator.SetFloat("VelocityY", rigid.linearVelocityY);
     }
 
     void OnMove(InputValue value)
@@ -53,6 +94,14 @@ public class Player : MonoBehaviour
         {
             Jump();
         }
+    }
+
+    void Move()
+    {
+        if (isDash)
+            return;
+
+        rigid.linearVelocityX = inputVec.x * speed;
     }
 
     void Jump()
@@ -81,20 +130,17 @@ public class Player : MonoBehaviour
             animator.SetBool("Jump", false);
     }
 
-    void LateUpdate()
+    void Dash()
     {
-        if (inputVec.x != 0)
-        {
-            spriteRenderer.flipX = inputVec.x < 0;
+        if (isDash)
+            return;
 
-            if(spriteRenderer.flipX)
-                animator.transform.localPosition = LeftOffset;
-            else
-                animator.transform.localPosition = RightOffset;
+        isDash = true;
+        //바라보는 방향으로 대쉬
+        float dir = spriteRenderer.flipX ? -1f : 1f;
+        animator.SetTrigger("Dash");
 
-        }
-
-        animator.SetFloat("Speed", inputVec.magnitude);
-        animator.SetFloat("VelocityY", rigid.linearVelocityY);
+        rigid.AddForceX(dashPower * dir, ForceMode2D.Impulse);
     }
+
 }
