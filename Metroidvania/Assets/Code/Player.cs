@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR;
@@ -26,10 +27,6 @@ public class Player : Pawn
 
     [Header("#Attack")]
     InputAction attackAction;
-    Vector3 hitboxOffset = new Vector3(0.1f, 0, 0);
-
-    [Header("#Object")]
-    public Collider2D hitBox;
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -43,6 +40,8 @@ public class Player : Pawn
 
         dashAction = InputSystem.actions.FindAction("Dash");
         attackAction = InputSystem.actions.FindAction("Attack");
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -83,6 +82,17 @@ public class Player : Pawn
         animator.SetFloat("VelocityY", rigid.linearVelocityY);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag != "Enemy")
+            return;
+
+        isHurt = true;
+        isAttack = false;
+        audioSource.Play();
+        animator.SetTrigger("Hurt");
+    }
+
     void OnMove(InputValue value)
     {
         inputVec = value.Get<Vector2>();
@@ -98,7 +108,7 @@ public class Player : Pawn
 
     void Move()
     {
-        if (isDash || isAttack)
+        if (isDash || isAttack || isHurt)
             return;
 
         rigid.linearVelocityX = inputVec.x * speed;

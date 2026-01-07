@@ -34,4 +34,9 @@ public class PlayerAnim : MonoBehaviour
     {
         player.EnableHitBox(false);
     }
+
+    public void EndHurt()
+    {
+        player.isHurt = false;
+    }
 }

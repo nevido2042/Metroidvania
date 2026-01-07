@@ -6,23 +6,24 @@ public class Enemy : Pawn
 {
     public Player player;
 
-    [Header("#Move")]
+    [Header("#Enemy Move")]
     Rigidbody2D rigid;
     public float moveSpeed;
-    public float stopDistance = 0.5f;
+    public float stopDistance;
 
-    [Header("#Sound")]
-    AudioSource audio;
+    [Header("#Attack")]
+    public float attackRange;
+    public float attackCooldown;
+    float lastAttackTime;
 
     [Header("#Render")]
     SpriteRenderer spriteRenderer;
     Animator animator;
 
-
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
     }
@@ -31,8 +32,17 @@ public class Enemy : Pawn
     {
         float distance = Mathf.Abs(player.transform.position.x - transform.position.x);
 
+        if (distance <= attackRange)
+        {
+            rigid.linearVelocityX = 0f;
+            TryAttack();
+            return;
+        }
+
+
+
         // °Å¸®°¡ °¡±î¿ì¸é ¸ØÃá´Ù
-        if (distance <= stopDistance)
+        if (distance <= stopDistance || isAttack)
         {
             rigid.linearVelocityX = 0f;
             return;
@@ -65,10 +75,29 @@ public class Enemy : Pawn
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.name == "HitBox")
+        if(collision.tag == "Player")
         {
-            audio.Play();
+            isAttack = false;
+            audioSource.Play();
             animator.SetTrigger("Hurt");
         }
+    }
+
+    void TryAttack()
+    {
+        if (isAttack)
+            return;
+
+        if (Time.time - lastAttackTime < attackCooldown)
+            return;
+
+        Attack();
+    }
+
+    void Attack()
+    {
+        isAttack = true;
+        lastAttackTime = Time.time;
+        animator.SetTrigger("Attack");
     }
 }
