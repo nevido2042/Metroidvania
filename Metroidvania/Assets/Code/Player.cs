@@ -26,6 +26,10 @@ public class Player : Pawn
 
     [Header("#Attack")]
     InputAction attackAction;
+    Vector3 hitboxOffset = new Vector3(0.1f, 0, 0);
+
+    [Header("#Object")]
+    public Collider2D hitBox;
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -150,6 +154,9 @@ public class Player : Pawn
         if (isAttack)
             return;
 
+        float dir = isLeft ? -1f : 1f;
+        hitBox.transform.localPosition = hitboxOffset * dir;
+
         isAttack = true;
         animator.SetTrigger("Attack");
 
@@ -162,6 +169,7 @@ public class Player : Pawn
         if (inputVec.x != 0)
         {
             spriteRenderer.flipX = inputVec.x < 0;
+            isLeft = spriteRenderer.flipX;
 
             if (spriteRenderer.flipX)
                 animator.transform.localPosition = LeftOffset;
@@ -170,4 +178,10 @@ public class Player : Pawn
 
         }
     }
+
+    public void EnableHitBox(bool b)
+    {
+        hitBox.enabled = b;
+    }
+
 }

@@ -16,11 +16,22 @@ public class PlayerAnim : MonoBehaviour
     public void EndAttack()
     {
         player.isAttack = false;
+        player.EnableHitBox(false);
     }
 
     public void EndDashAttack()
     {
         player.isDash = false;
         player.isAttack = false;
+    }
+
+    public void ActiveHitBox()
+    {
+        player.EnableHitBox(true);
+    }
+
+    public void InactiveHitBox()
+    {
+        player.EnableHitBox(false);
     }
 }

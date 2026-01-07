@@ -52,10 +52,19 @@ public class Enemy : Pawn
             return;
 
         spriteRenderer.flipX = player.transform.position.x - transform.position.x > 0f;
+        isLeft = !spriteRenderer.flipX;
 
         if (spriteRenderer.flipX)
             animator.transform.localPosition = LeftOffset;
         else
             animator.transform.localPosition = RightOffset;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.name == "HitBox")
+        {
+            animator.SetTrigger("Hurt");
+        }
     }
 }

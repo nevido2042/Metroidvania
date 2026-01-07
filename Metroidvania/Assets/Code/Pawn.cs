@@ -6,6 +6,7 @@ public abstract class Pawn : MonoBehaviour
     public bool isAttack;
 
     [Header("#Render")]
+    public bool isLeft;
     public Vector3 RightOffset;
     public Vector3 LeftOffset;
 
