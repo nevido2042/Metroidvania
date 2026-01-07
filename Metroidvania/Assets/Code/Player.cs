@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR;
+using static UnityEngine.UI.Image;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour
     public float speed;
     public bool isGrounded;
     public float jumpForce;
+    public float groundCheckDistance;
+    public LayerMask groundLayer;
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -26,10 +29,17 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
     }
+
+    private void Start()
+    {
+        animator.transform.localPosition = RightOffset;
+    }
+
     private void FixedUpdate()
     {
-        Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime;
-        rigid.MovePosition(rigid.position + nextVec);
+        rigid.linearVelocityX = inputVec.x * speed;
+
+        CheckGround();
     }
 
     void OnMove(InputValue value)
@@ -39,7 +49,7 @@ public class Player : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (value.isPressed /*&& isGrounded*/)
+        if (value.isPressed && isGrounded)
         {
             Jump();
         }
@@ -51,6 +61,22 @@ public class Player : MonoBehaviour
         rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
+    void CheckGround()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(
+            rigid.position,
+            Vector2.down,
+            groundCheckDistance,
+            groundLayer
+        );
+
+        Debug.DrawRay(
+       transform.position,
+       Vector2.down * groundCheckDistance,
+       isGrounded ? Color.green : Color.red);
+
+        isGrounded = hit.collider != null;
+    }
 
     void LateUpdate()
     {
