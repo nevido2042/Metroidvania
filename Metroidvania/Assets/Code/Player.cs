@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.XR;
 using static UnityEngine.UI.Image;
 
-public class Player : MonoBehaviour
+public class Player : Pawn
 {
     [Header("#Move")]
     public Vector2 inputVec;
@@ -26,15 +26,10 @@ public class Player : MonoBehaviour
 
     [Header("#Attack")]
     InputAction attackAction;
-    public bool isAttack;
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator animator;
-
-    [Header("#Render")]
-    public Vector3 RightOffset;
-    public Vector3 LeftOffset;
 
     void Awake()
     {
@@ -159,8 +154,7 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Attack");
 
     }
-
-    void Flip()
+    protected override void Flip()
     {
         if (isAttack)
             return;
