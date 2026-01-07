@@ -116,7 +116,7 @@ public class Player : Pawn
 
     void Jump()
     {
-        if (isAttack)
+        if (isAttack || isHurt)
             return;
 
         animator.SetBool("Jump", true);
@@ -145,10 +145,7 @@ public class Player : Pawn
 
     void Dash()
     {
-        if (isAttack)
-            return;
-
-        if (isDash)
+        if (isAttack || isHurt || isDash)
             return;
 
         isDash = true;
