@@ -1,22 +1,17 @@
 using UnityEngine;
 
-public class PlayerAnim : MonoBehaviour
+public class PlayerAnim : PawnAnim
 {
     Player player;
 
     private void Awake()
     {
+        pawn = GetComponentInParent<Pawn>();
         player = GetComponentInParent<Player>();
     }
     public void EndDash()
     {
         player.isDash = false;
-    }
-
-    public void EndAttack()
-    {
-        player.isAttack = false;
-        player.EnableHitBox(false);
     }
 
     public void EndDashAttack()
@@ -25,18 +20,11 @@ public class PlayerAnim : MonoBehaviour
         player.isAttack = false;
     }
 
-    public void ActiveHitBox()
+    public override void EndHurt()
     {
-        player.EnableHitBox(true);
+        pawn.isHurt = false;
+        player.isDash = false;
     }
 
-    public void InactiveHitBox()
-    {
-        player.EnableHitBox(false);
-    }
 
-    public void EndHurt()
-    {
-        player.isHurt = false;
-    }
 }

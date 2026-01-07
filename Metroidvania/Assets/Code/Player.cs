@@ -189,9 +189,4 @@ public class Player : Pawn
         }
     }
 
-    public void EnableHitBox(bool b)
-    {
-        hitBox.enabled = b;
-    }
-
 }

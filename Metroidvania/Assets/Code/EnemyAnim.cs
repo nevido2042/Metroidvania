@@ -1,22 +1,18 @@
 using UnityEngine;
 
-public class EnemyAnim : MonoBehaviour
+public class EnemyAnim : PawnAnim
 {
-    public Enemy enemy;
+    Enemy enemy;
 
     private void Awake()
     {
+        pawn = GetComponentInParent<Pawn>();
         enemy = GetComponentInParent<Enemy>();
     }
 
-    public void EndAttack()
+    public override void EndHurt()
     {
-        enemy.isAttack = false;
-        enemy.hitBox.enabled = false;
+        pawn.isHurt = false;
     }
 
-    public void ActiveHitbox()
-    {
-        enemy.hitBox.enabled = true;
-    }
 }
