@@ -17,8 +17,8 @@ public class Enemy : Pawn
     float lastAttackTime;
 
     [Header("#Render")]
-    SpriteRenderer spriteRenderer;
-    Animator animator;
+    protected SpriteRenderer spriteRenderer;
+    protected Animator animator;
 
     void Awake()
     {
@@ -54,6 +54,15 @@ public class Enemy : Pawn
 
     private void LateUpdate()
     {
+        Flip();
+
+        animator.SetFloat("Speed", Mathf.Abs(rigid.linearVelocityX));
+    }
+
+    protected void OnLateUpdate()
+    {
+        Debug.Log("Enemy");
+
         Flip();
 
         animator.SetFloat("Speed", Mathf.Abs(rigid.linearVelocityX));
