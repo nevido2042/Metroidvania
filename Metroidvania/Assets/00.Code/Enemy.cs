@@ -22,6 +22,11 @@ public class Enemy : Pawn
 
     void Awake()
     {
+        OnAwake();
+    }
+
+    protected void OnAwake()
+    {
         rigid = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -29,6 +34,11 @@ public class Enemy : Pawn
     }
 
     void FixedUpdate()
+    {
+        OnFixedUpdate();
+    }
+
+    protected void OnFixedUpdate()
     {
         float distance = Mathf.Abs(player.transform.position.x - transform.position.x);
 
@@ -54,15 +64,11 @@ public class Enemy : Pawn
 
     private void LateUpdate()
     {
-        Flip();
-
-        animator.SetFloat("Speed", Mathf.Abs(rigid.linearVelocityX));
+        OnLateUpdate();
     }
 
     protected void OnLateUpdate()
     {
-        Debug.Log("Enemy");
-
         Flip();
 
         animator.SetFloat("Speed", Mathf.Abs(rigid.linearVelocityX));

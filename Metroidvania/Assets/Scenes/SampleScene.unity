@@ -338,7 +338,7 @@ MonoBehaviour:
   player: {fileID: 992445728}
   moveSpeed: 1
   stopDistance: 1
-  attackRange: 1
+  attackRange: 0.1
   attackCooldown: 1
 --- !u!1 &519420028
 GameObject:
@@ -640,8 +640,8 @@ GameObject:
   - component: {fileID: 986926523}
   - component: {fileID: 986926521}
   - component: {fileID: 986926520}
-  - component: {fileID: 986926525}
   - component: {fileID: 986926526}
+  - component: {fileID: 986926527}
   m_Layer: 7
   m_Name: DeathBringer
   m_TagString: Untagged
@@ -730,30 +730,6 @@ Transform:
   - {fileID: 1028944958}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &986926525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986926519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ed1c9d44be0f614fa47231431622af8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
-  isAttack: 0
-  hitBox: {fileID: 1028944959}
-  hitboxOffset: {x: -0.5, y: 0, z: 0}
-  isHurt: 0
-  isLeft: 0
-  RightOffset: {x: -0.36, y: 0.19, z: 0}
-  LeftOffset: {x: 0.36, y: 0.19, z: 0}
-  player: {fileID: 992445728}
-  moveSpeed: 1
-  stopDistance: 0.1
-  attackRange: 0.5
-  attackCooldown: 1
 --- !u!82 &986926526
 AudioSource:
   m_ObjectHideFlags: 0
@@ -851,6 +827,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &986926527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986926519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f2257045b15504dbef3a3f4c687ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathBringer
+  isAttack: 0
+  hitBox: {fileID: 1028944959}
+  hitboxOffset: {x: -0.5, y: 0, z: 0}
+  isHurt: 0
+  isLeft: 0
+  RightOffset: {x: -0.36, y: 0.19, z: 0}
+  LeftOffset: {x: 0.36, y: 0.19, z: 0}
+  player: {fileID: 992445728}
+  moveSpeed: 1
+  stopDistance: 0.1
+  attackRange: 0.5
+  attackCooldown: 1
 --- !u!1 &992445722
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,14 +1,15 @@
 using UnityEngine;
 
-public class Wizard : Enemy
+public class DeathBringer : Enemy
 {
+
     private void Awake()
     {
         base.OnAwake();
     }
     private void FixedUpdate()
     {
-        base.OnFixedUpdate();
+        base.OnFixedUpdate();        
     }
 
     private void LateUpdate()
@@ -21,7 +22,7 @@ public class Wizard : Enemy
         if (isAttack)
             return;
 
-        spriteRenderer.flipX = player.transform.position.x - transform.position.x < 0f;//이 부분이 다름
+        spriteRenderer.flipX = player.transform.position.x - transform.position.x > 0f; //이 부분이 다름
         isLeft = !spriteRenderer.flipX;
 
         if (spriteRenderer.flipX)
