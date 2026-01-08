@@ -3,21 +3,33 @@ using UnityEngine;
 public class PlayerAnim : PawnAnim
 {
     Player player;
+    Ghost ghost;
 
     private void Awake()
     {
         base.OnAwake();
         player = GetComponentInParent<Player>();
+        ghost = GetComponent<Ghost>();
     }
     public void EndDash()
     {
         player.isDash = false;
+
+        GhostOff();//¿‹ªÛ ≤Ù±‚
+    }
+
+    public void GhostOff()
+    {
+        //¿‹ªÛ ≤Ù±‚
+        ghost.makeGhost = false;
     }
 
     public void EndDashAttack()
     {
         player.isDash = false;
         player.isAttack = false;
+
+        GhostOff();//¿‹ªÛ ≤Ù±‚
     }
 
     public override void EndHurt()
@@ -25,6 +37,8 @@ public class PlayerAnim : PawnAnim
         InactiveHitBox();
         pawn.isHurt = false;
         player.isDash = false;
+
+        GhostOff();//¿‹ªÛ ≤Ù±‚
     }
 
     public void CameraShakeLight()

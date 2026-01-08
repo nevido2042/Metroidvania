@@ -54,6 +54,6 @@ public class EnemyAnim : PawnAnim
     public void Vanish()
     {
         //오브젝트 풀링 적용 예정
-        Destroy(gameObject);
+        Destroy(pawn.gameObject);
     }
 }

@@ -24,6 +24,7 @@ public class Player : Pawn
     public float dashPower;
     public bool isDash;
     InputAction dashAction;
+    Ghost ghost;
 
     [Header("#Attack")]
     InputAction attackAction;
@@ -40,6 +41,8 @@ public class Player : Pawn
 
         dashAction = InputSystem.actions.FindAction("Dash");
         attackAction = InputSystem.actions.FindAction("Attack");
+
+        ghost = GetComponentInChildren<Ghost>();
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -147,7 +150,7 @@ public class Player : Pawn
     {
         if (isAttack || isHurt || isDash)
             return;
-
+        ghost.makeGhost = true;
         isDash = true;
         //바라보는 방향으로 대쉬
         float dir = spriteRenderer.flipX ? -1f : 1f;
