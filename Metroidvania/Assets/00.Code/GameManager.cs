@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [Header("#UI Control")]
     public WaveInfo waveInfo;
+    public Button retryButton;
 
     private void Awake()
     {
@@ -42,8 +45,19 @@ public class GameManager : MonoBehaviour
 
         if(remainEnemy == 0)
         {
+            //마지막 웨이브 였음 (게임 클리어)
+            if (curWave == totalWave)
+            {
+                retryButton.gameObject.SetActive(true);
+                return;
+            }
+
             StartWave();
         }
     }
 
+    public void Retry()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

@@ -166,7 +166,6 @@ public class Player : Pawn
 
         isAttack = true;
         animator.SetTrigger("Attack");
-
     }
     protected override void Flip()
     {
