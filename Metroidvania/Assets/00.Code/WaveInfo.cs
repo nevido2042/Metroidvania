@@ -5,6 +5,7 @@ public class WaveInfo : MonoBehaviour
 {
     public Text waveText;
     public Text remainText;
+    public Text countdown;
 
     public void SetWaveText(int wave)
     {
@@ -14,5 +15,10 @@ public class WaveInfo : MonoBehaviour
     public void SetRemainText(int remain)
     {
         remainText.text = string.Format("Remain {0}", remain);
+    }
+
+    public void SetCountdownText(int remain)
+    {
+        countdown.text = string.Format("Wave Start In {0}", remain);
     }
 }

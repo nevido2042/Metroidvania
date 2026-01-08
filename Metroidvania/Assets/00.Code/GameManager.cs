@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,8 +28,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(WaveStartRoutine());
+    }
+
+    IEnumerator WaveStartRoutine()
+    {
+        waveInfo.countdown.gameObject.SetActive(true);
+        for (int i = 3; i > 0; i--)
+        {
+            waveInfo.SetCountdownText(i);
+            yield return new WaitForSeconds(1f);
+        }
+
+        waveInfo.countdown.gameObject.SetActive(false);
         StartWave();
     }
+
 
     void StartWave()
     {
@@ -55,7 +70,7 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            StartWave();
+            StartCoroutine(WaveStartRoutine());
         }
     }
 
