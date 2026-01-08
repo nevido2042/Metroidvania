@@ -2,12 +2,12 @@ using System.Runtime.ExceptionServices;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
-public class Enemy : Pawn
+public abstract class Enemy : Pawn
 {
-    public Player player;
+    protected Player player;
 
     [Header("#Enemy Move")]
-    Rigidbody2D rigid;
+    protected Rigidbody2D rigid;
     public float moveSpeed;
 
     [Header("#Attack")]
@@ -19,51 +19,16 @@ public class Enemy : Pawn
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
 
-    void Awake()
-    {
-        OnAwake();
-    }
-
     protected void OnAwake()
     {
         rigid = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
+        player = GameManager.instance.player;
     }
 
-    void FixedUpdate()
-    {
-        OnFixedUpdate();
-    }
-
-    protected void OnFixedUpdate()
-    {
-        float distance = Mathf.Abs(player.transform.position.x - transform.position.x);
-
-        //가까우면 공격시도
-        if (distance <= attackRange)
-        {
-            rigid.linearVelocityX = 0f;
-            TryAttack();
-            return;
-        }
-
-        // 공격 중이면 멈춘다
-        if (isAttack)
-        {
-            rigid.linearVelocityX = 0f;
-            return;
-        }
-
-        float dir = Mathf.Sign(player.transform.position.x - transform.position.x);
-        rigid.linearVelocityX = dir * moveSpeed;
-    }
-
-    private void LateUpdate()
-    {
-        OnLateUpdate();
-    }
+    protected abstract void OnFixedUpdate();
 
     protected void OnLateUpdate()
     {
@@ -96,7 +61,7 @@ public class Enemy : Pawn
         }
     }
 
-    void TryAttack()
+    protected void TryAttack()
     {
         if (isAttack)
             return;
