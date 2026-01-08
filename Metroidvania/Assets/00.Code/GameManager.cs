@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public WaveInfo waveInfo;
     public Button retryButton;
 
+    [Header("#Camera Control")]
+    public CameraShake cameraShake;
+
     private void Awake()
     {
         instance = this;
@@ -60,4 +63,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void CameraShake(float intensity, float frequency, float time)
+    {
+        //ÁøÆø, ºóµµ¼ö, ±â°£
+        cameraShake.Shake(intensity, frequency, time);
+    }
+
 }

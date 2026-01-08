@@ -27,5 +27,24 @@ public class PlayerAnim : PawnAnim
         player.isDash = false;
     }
 
+    public void CameraShakeLight()
+    {
+        GameManager.instance.CameraShake(0.3f, 10f, 0.2f);
+
+    }
+
+    public void CameraShake()
+    {
+        //ÁøÆø, ºóµµ¼ö, ±â°£
+        GameManager.instance.CameraShake(0.5f, 10f, 0.2f);
+    }
+
+    public void CameraShakeHeavy()
+    {
+        GameManager.instance.CameraShake(1f, 10f, 0.2f);
+
+    }
+
+
 
 }
