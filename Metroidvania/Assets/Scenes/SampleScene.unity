@@ -1108,6 +1108,7 @@ MonoBehaviour:
   hitBox: {fileID: 544911724}
   hitboxOffset: {x: 0.1, y: 0, z: 0}
   isHurt: 0
+  isDeath: 0
   isLeft: 0
   RightOffset: {x: 0.08, y: 0.04, z: 0}
   LeftOffset: {x: -0.08, y: 0.04, z: 0}
@@ -1115,7 +1116,7 @@ MonoBehaviour:
   speed: 1
   jumpPressed: 0
   isGrounded: 1
-  jumpForce: 3
+  jumpForce: 4
   groundCheckDistance: 0.2
   groundLayer:
     serializedVersion: 2
@@ -1670,7 +1671,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wave 00
+  m_Text: Wave -
 --- !u!222 &1615404519
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1749,7 +1750,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Remain 00
+  m_Text: Remain -
 --- !u!222 &1645411625
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1861,7 +1862,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3318188226485093758, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

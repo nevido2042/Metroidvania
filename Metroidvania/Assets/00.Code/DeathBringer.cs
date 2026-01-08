@@ -19,6 +19,9 @@ public class DeathBringer : Enemy
 
     protected override void OnFixedUpdate()
     {
+        if (isDeath)
+            return;
+
         float distance = Mathf.Abs(player.transform.position.x - transform.position.x);
 
         //가까우면 공격시도

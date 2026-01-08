@@ -19,6 +19,9 @@ public class Wizard : Enemy
 
     protected override void OnFixedUpdate()
     {
+        if (isDeath)
+            return;
+
         // 공격 또는 맞는 중 정지
         if (isAttack || isHurt)
         {

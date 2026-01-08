@@ -9,8 +9,9 @@ public abstract class Pawn : MonoBehaviour
     public Collider2D hitBox;
     public Vector3 hitboxOffset;
 
-    [Header("#Hurt")]
+    [Header("#State")]
     public bool isHurt;
+    public bool isDeath = false;
 
     [Header("#Flip")]
     public bool isLeft;

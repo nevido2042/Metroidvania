@@ -33,6 +33,9 @@ public abstract class Enemy : Pawn
 
     protected void OnLateUpdate()
     {
+        if (isDeath)
+            return;
+
         Flip();
 
         animator.SetFloat("Speed", Mathf.Abs(rigid.linearVelocityX));
@@ -54,6 +57,9 @@ public abstract class Enemy : Pawn
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isDeath)
+            return;
+
         if(collision.tag == "Player")
         {
             isAttack = false;
@@ -62,9 +68,11 @@ public abstract class Enemy : Pawn
             animator.SetTrigger("Hurt");
             hp--;
 
-            if(hp <=0)
+            if(hp <=0 && !isDeath)
             {
-                Destroy(gameObject);
+                isDeath = true;
+                animator.SetTrigger("Death");
+                //Destroy(gameObject);
                 GameManager.instance.Kill();
             }
         }

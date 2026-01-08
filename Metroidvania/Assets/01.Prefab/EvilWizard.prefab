@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1459035125, guid: 77eb5f6454af20a439335a0a923065dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -156,7 +156,7 @@ Transform:
   m_GameObject: {fileID: 4261292189509509711}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.081, y: 0.021, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -341,9 +341,11 @@ MonoBehaviour:
   hitBox: {fileID: 0}
   hitboxOffset: {x: 0, y: 0, z: 0}
   isHurt: 0
+  isDeath: 0
   isLeft: 0
   RightOffset: {x: 0, y: 0, z: 0}
   LeftOffset: {x: 0, y: 0, z: 0}
+  hp: 2
   moveSpeed: 1
   attackRange: 1
   attackCooldown: 1
