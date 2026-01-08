@@ -4,6 +4,11 @@ public abstract class PawnAnim : MonoBehaviour
 {
     protected Pawn pawn;
 
+    protected void OnAwake()
+    {
+        pawn = GetComponentInParent<Pawn>();
+    }
+
     public void EndAttack()
     {
         pawn.isAttack = false;

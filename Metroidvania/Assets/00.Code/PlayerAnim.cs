@@ -6,7 +6,7 @@ public class PlayerAnim : PawnAnim
 
     private void Awake()
     {
-        pawn = GetComponentInParent<Pawn>();
+        base.OnAwake();
         player = GetComponentInParent<Player>();
     }
     public void EndDash()
