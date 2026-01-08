@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
     [Header("#Game Control")]
     public Spawner spawner;
     public int totalWave;
-    public int curWave = 1;
+    public int curWave;
     public int remainEnemy;
+
+    [Header("#UI Control")]
+    public WaveInfo waveInfo;
 
     private void Awake()
     {
@@ -18,8 +21,29 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StartWave();
+    }
+
+    void StartWave()
+    {
         //스포너한테 이제부터 몇마리 생성해 라고 지시
-        spawner.StartSpawn(curWave * 2);
+        curWave++;
+        remainEnemy = curWave * 2;
+        spawner.StartSpawn(remainEnemy);
+
+        waveInfo.SetWaveText(curWave);
+        waveInfo.SetRemainText(remainEnemy);
+    }
+
+    public void Kill()
+    {
+        remainEnemy--;
+        waveInfo.SetRemainText(remainEnemy);
+
+        if(remainEnemy == 0)
+        {
+            StartWave();
+        }
     }
 
 }

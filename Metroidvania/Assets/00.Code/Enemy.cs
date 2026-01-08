@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Enemy : Pawn
 {
     protected Player player;
+    public int hp = 2;
 
     [Header("#Enemy Move")]
     protected Rigidbody2D rigid;
@@ -59,6 +60,13 @@ public abstract class Enemy : Pawn
             isHurt = true;
             audioSource.Play();
             animator.SetTrigger("Hurt");
+            hp--;
+
+            if(hp <=0)
+            {
+                Destroy(gameObject);
+                GameManager.instance.Kill();
+            }
         }
     }
 
