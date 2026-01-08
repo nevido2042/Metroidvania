@@ -19,8 +19,8 @@ public class Wizard : Enemy
 
     protected override void OnFixedUpdate()
     {
-        // 공격 중 정지
-        if (isAttack)
+        // 공격 또는 맞는 중 정지
+        if (isAttack || isHurt)
         {
             rigid.linearVelocityX = 0f;
             return;

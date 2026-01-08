@@ -56,6 +56,7 @@ public abstract class Enemy : Pawn
         if(collision.tag == "Player")
         {
             isAttack = false;
+            isHurt = true;
             audioSource.Play();
             animator.SetTrigger("Hurt");
         }
