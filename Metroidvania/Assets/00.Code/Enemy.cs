@@ -9,7 +9,6 @@ public class Enemy : Pawn
     [Header("#Enemy Move")]
     Rigidbody2D rigid;
     public float moveSpeed;
-    public float stopDistance;
 
     [Header("#Attack")]
     public float attackRange;
@@ -42,6 +41,7 @@ public class Enemy : Pawn
     {
         float distance = Mathf.Abs(player.transform.position.x - transform.position.x);
 
+        //가까우면 공격시도
         if (distance <= attackRange)
         {
             rigid.linearVelocityX = 0f;
@@ -49,10 +49,8 @@ public class Enemy : Pawn
             return;
         }
 
-
-
-        // 거리가 가까우면 멈춘다
-        if (distance <= stopDistance || isAttack)
+        // 공격 중이면 멈춘다
+        if (isAttack)
         {
             rigid.linearVelocityX = 0f;
             return;
@@ -116,6 +114,10 @@ public class Enemy : Pawn
         animator.SetTrigger("Attack");
 
         float dir = isLeft ? 1f : -1f;
-        hitBox.transform.localPosition = hitboxOffset * dir;
+
+        if(hitBox) //근거리만 공격 히트박스 있음 (Pawn 에서 근거리, 원거리로 나누면 괜찮을 듯)
+        {
+            hitBox.transform.localPosition = hitboxOffset * dir;
+        }
     }
 }

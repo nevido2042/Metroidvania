@@ -337,8 +337,7 @@ MonoBehaviour:
   LeftOffset: {x: 0, y: 0, z: 0}
   player: {fileID: 992445728}
   moveSpeed: 1
-  stopDistance: 1
-  attackRange: 0.1
+  attackRange: 1
   attackCooldown: 1
 --- !u!1 &519420028
 GameObject:
@@ -848,7 +847,6 @@ MonoBehaviour:
   LeftOffset: {x: 0.36, y: 0.19, z: 0}
   player: {fileID: 992445728}
   moveSpeed: 1
-  stopDistance: 0.1
   attackRange: 0.5
   attackCooldown: 1
 --- !u!1 &992445722

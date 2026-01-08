@@ -7,10 +7,13 @@ public abstract class PawnAnim : MonoBehaviour
     public void EndAttack()
     {
         pawn.isAttack = false;
-        pawn.hitBox.enabled = false;
+
+        if(pawn.hitBox) //근거리만 공격 히트박스 있음 (Pawn 에서 근거리, 원거리로 나누면 괜찮을 듯)
+        {
+            pawn.hitBox.enabled = false;
+        }
+
     }
-
-
     public void ActiveHitBox()
     {
         pawn.hitBox.enabled = true;
@@ -18,7 +21,10 @@ public abstract class PawnAnim : MonoBehaviour
 
     public void InactiveHitBox()
     {
-        pawn.hitBox.enabled = false;
+        if(pawn.hitBox)//근거리만 공격 히트박스 있음 (Pawn 에서 근거리, 원거리로 나누면 괜찮을 듯)
+        {
+            pawn.hitBox.enabled = false;
+        }
     }
     public abstract void EndHurt();
 }
