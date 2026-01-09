@@ -349,6 +349,7 @@ MonoBehaviour:
   moveSpeed: 1
   attackRange: 1
   attackCooldown: 1
+  effectPrefab: {fileID: 5911619047345563509, guid: fa31b0b9f2a4bba469bb7f6ef5b8608c, type: 3}
   prefabProjectile: {fileID: 2126177956736327886, guid: 9601f9890a7249349b03966a14f4eb5f, type: 3}
   shootOffset: {x: 0.46, y: 0.13, z: 0}
   retreatStartRange: 0.5

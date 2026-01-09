@@ -300,6 +300,7 @@ MonoBehaviour:
   moveSpeed: 1
   attackRange: 0.5
   attackCooldown: 1
+  effectPrefab: {fileID: 5911619047345563509, guid: fa31b0b9f2a4bba469bb7f6ef5b8608c, type: 3}
 --- !u!1 &6906133254546677849
 GameObject:
   m_ObjectHideFlags: 0

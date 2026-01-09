@@ -19,6 +19,7 @@ public abstract class Enemy : Pawn
     [Header("#Render")]
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
+    public GameObject effectPrefab;
 
     protected void OnAwake()
     {
@@ -67,8 +68,10 @@ public abstract class Enemy : Pawn
             audioSource.Play();
             animator.SetTrigger("Hurt");
             hp--;
+            Vector3 spawnPos = collision.ClosestPoint(transform.position);
+            Instantiate(effectPrefab, spawnPos, Quaternion.identity);
 
-            if(hp <=0 && !isDeath)
+            if (hp <=0 && !isDeath)
             {
                 isDeath = true;
                 animator.SetTrigger("Death");
