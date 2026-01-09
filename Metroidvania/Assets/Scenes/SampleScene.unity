@@ -1167,7 +1167,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &992445728
 MonoBehaviour:
@@ -1194,12 +1194,13 @@ MonoBehaviour:
   jumpPressed: 0
   isGrounded: 1
   jumpForce: 4
-  groundCheckDistance: 0.2
+  groundCheckDistance: 0.3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   dashPower: 2
   isDash: 0
+  downAttackGravity: 3
 --- !u!114 &992445729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1472,6 +1473,7 @@ GameObject:
   - component: {fileID: 1130204990}
   - component: {fileID: 1130204992}
   - component: {fileID: 1130204991}
+  - component: {fileID: 1130204993}
   m_Layer: 5
   m_Name: Countdown
   m_TagString: Untagged
@@ -1525,7 +1527,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1540,6 +1542,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130204989}
   m_CullTransparentMesh: 1
+--- !u!114 &1130204993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130204989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1389206967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,6 +1706,7 @@ GameObject:
   - component: {fileID: 1615404517}
   - component: {fileID: 1615404519}
   - component: {fileID: 1615404518}
+  - component: {fileID: 1615404520}
   m_Layer: 5
   m_Name: Wave
   m_TagString: Untagged
@@ -1742,7 +1760,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1757,6 +1775,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615404516}
   m_CullTransparentMesh: 1
+--- !u!114 &1615404520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615404516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1645411622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,6 +1801,7 @@ GameObject:
   - component: {fileID: 1645411623}
   - component: {fileID: 1645411625}
   - component: {fileID: 1645411624}
+  - component: {fileID: 1645411626}
   m_Layer: 5
   m_Name: Remain
   m_TagString: Untagged
@@ -1821,7 +1855,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1836,6 +1870,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645411622}
   m_CullTransparentMesh: 1
+--- !u!114 &1645411626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645411622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1654301603
 GameObject:
   m_ObjectHideFlags: 0

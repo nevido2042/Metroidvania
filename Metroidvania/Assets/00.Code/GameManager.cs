@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         //스포너한테 이제부터 몇마리 생성해 라고 지시
         curWave++;
-        remainEnemy = curWave * 2;
+        remainEnemy = curWave;
         spawner.StartSpawn(remainEnemy);
 
         waveInfo.SetWaveText(curWave);

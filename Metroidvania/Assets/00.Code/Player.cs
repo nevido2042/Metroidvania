@@ -27,7 +27,9 @@ public class Player : Pawn
     Ghost ghost;
 
     [Header("#Attack")]
+    public float downAttackGravity = 3f;
     InputAction attackAction;
+
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -143,7 +145,11 @@ public class Player : Pawn
         isGrounded = hit.collider != null;
 
         if (isGrounded)
+        {
             animator.SetBool("Jump", false);
+            rigid.gravityScale = 1f;
+        }
+            
     }
 
     void Dash()
@@ -169,6 +175,12 @@ public class Player : Pawn
 
         isAttack = true;
         animator.SetTrigger("Attack");
+
+        if(!isDash && animator.GetBool("Jump"))
+        {
+            rigid.gravityScale = downAttackGravity;
+        }
+
     }
     protected override void Flip()
     {
