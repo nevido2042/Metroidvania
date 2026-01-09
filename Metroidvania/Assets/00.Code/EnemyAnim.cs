@@ -36,9 +36,11 @@ public class EnemyAnim : PawnAnim
 
         Vector3 shootPos = wizard.transform.position + finalOffset;
 
-        Quaternion rot = wizard.isLeft ? Quaternion.Euler(0, 180f, 0) : Quaternion.identity;
+        //Quaternion rot = wizard.isLeft ? Quaternion.Euler(0, 180f, 0) : Quaternion.identity;
 
-        GameObject go = Instantiate(wizard.prefabProjectile, shootPos, rot);
+        GameObject go = GameManager.instance.poolManager.Get(4); // Instantiate(wizard.prefabProjectile, shootPos, rot);
+        go.transform.position = shootPos;
+        //go.transform.rotation = rot;
 
         Projectile projectile = go.GetComponent<Projectile>();
 
@@ -48,12 +50,11 @@ public class EnemyAnim : PawnAnim
             return;
         }
 
-        projectile.Init(wizard.isLeft);
+        projectile.Init(wizard.isAttackLeft);
     }
 
     public void Vanish()
     {
-        //오브젝트 풀링 적용 예정
         Destroy(pawn.gameObject);
     }
 }

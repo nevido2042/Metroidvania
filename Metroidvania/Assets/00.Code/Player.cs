@@ -15,13 +15,6 @@ public class Player : Pawn
     public Vector2 inputVec;
     public float speed;
 
-    [Header("#Jump")]
-    public bool jumpPressed;
-    public bool isGrounded;
-    public float jumpForce;
-    public float groundCheckDistance;
-    public LayerMask groundLayer;
-
     [Header("#Dash")]
     public float dashPower;
     public bool isDash;
@@ -50,7 +43,7 @@ public class Player : Pawn
 
         ghost = GetComponentInChildren<Ghost>();
 
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -86,6 +79,12 @@ public class Player : Pawn
         if (rigid.linearVelocityY < 0)
         {
             CheckGround();
+
+            if (isGrounded)
+            {
+                animator.SetBool("Jump", false);
+                rigid.gravityScale = 1f;
+            }
         }
 
     }
@@ -111,7 +110,10 @@ public class Player : Pawn
 
         isHurt = true;
         isAttack = false;
-        audioSource.Play();
+
+        //audioSource.Play();
+        AudioManager.instance.PlaySfx(AudioManager.SFX.Hit);
+
         animator.SetTrigger("Hurt");
         hp--;
         hpBar.value = (float)hp / (float)maxHP;
@@ -155,29 +157,6 @@ public class Player : Pawn
         rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
-    void CheckGround()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(
-            rigid.position,
-            Vector2.down,
-            groundCheckDistance,
-            groundLayer
-        );
-
-        Debug.DrawRay(
-       transform.position,
-       Vector2.down * groundCheckDistance,
-       isGrounded ? Color.green : Color.red);
-
-        isGrounded = hit.collider != null;
-
-        if (isGrounded)
-        {
-            animator.SetBool("Jump", false);
-            rigid.gravityScale = 1f;
-        }
-            
-    }
 
     void Dash()
     {

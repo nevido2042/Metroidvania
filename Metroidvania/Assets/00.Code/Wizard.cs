@@ -37,6 +37,14 @@ public class Wizard : Enemy
             return;
         }
 
+        CheckGround();
+
+        if (IsWallAhead() && isGrounded)
+        {
+            JumpOverWall();
+            //animator.SetTrigger("Jump");
+        }
+
         float distance = Mathf.Abs(player.transform.position.x - transform.position.x);
         float dirToPlayer = Mathf.Sign(player.transform.position.x - transform.position.x);
 

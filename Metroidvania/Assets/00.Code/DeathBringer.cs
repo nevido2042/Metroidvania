@@ -47,6 +47,13 @@ public class DeathBringer : Enemy
             return;
         }
 
+        CheckGround();
+
+        if (IsWallAhead() && isGrounded)
+        {
+            JumpOverWall();
+        }
+
         float dir = Mathf.Sign(player.transform.position.x - transform.position.x);
         rigid.linearVelocityX = dir * moveSpeed;
     }

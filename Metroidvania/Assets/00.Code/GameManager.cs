@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(WaveStartRoutine());
+        AudioManager.instance.PlayBgm(true);
     }
 
     IEnumerator WaveStartRoutine()

@@ -3,12 +3,18 @@ using UnityEngine;
 
 public abstract class Pawn : MonoBehaviour
 {
-    protected AudioSource audioSource;
+    //protected AudioSource audioSource;
 
     [Header("#Attack")]
     public bool isAttack;
     public Collider2D hitBox;
     public Vector3 hitboxOffset;
+
+    [Header("#Jump")]
+    public bool isGrounded;
+    public float jumpForce;
+    public float groundCheckDistance;
+    public LayerMask groundLayer;
 
     [Header("#State")]
     public int maxHP;
@@ -19,6 +25,7 @@ public abstract class Pawn : MonoBehaviour
 
     [Header("#Flip")]
     public bool isLeft;
+    public bool isAttackLeft; //공격 시작 시 방향 저장 목적 (위자드)
     public Vector3 RightOffset;
     public Vector3 LeftOffset;
 
@@ -29,6 +36,23 @@ public abstract class Pawn : MonoBehaviour
     protected Rigidbody2D rigid;
 
     protected abstract void Flip();
+
+    protected void CheckGround()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(
+            rigid.position,
+            Vector2.down,
+            groundCheckDistance,
+            groundLayer
+        );
+
+        Debug.DrawRay(
+       transform.position,
+       Vector2.down * groundCheckDistance,
+       isGrounded ? Color.green : Color.red);
+
+        isGrounded = hit.collider != null;
+    }
 
     public void Knockback(Transform attacker)
     {

@@ -7,10 +7,11 @@ public abstract class Enemy : Pawn
     protected Player player;
 
     [Header("#Enemy Move")]
-    //protected Rigidbody2D rigid;
     public float moveSpeed;
+    public float wallCheckDistance = 0.2f;
+    public Transform footPos;
 
-    [Header("#Attack")]
+   [Header("#Attack")]
     public float attackRange;
     public float attackCooldown;
     float lastAttackTime;
@@ -18,12 +19,11 @@ public abstract class Enemy : Pawn
     [Header("#Render")]
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
-    //public GameObject effectPrefab;
 
     protected void OnAwake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
         player = GameManager.instance.player;
@@ -69,7 +69,10 @@ public abstract class Enemy : Pawn
         {
             isAttack = false;
             isHurt = true;
-            audioSource.Play();
+
+            //audioSource.Play();
+            AudioManager.instance.PlaySfx(AudioManager.SFX.Melee);
+
             animator.SetTrigger("Hurt");
             hp--;
             Vector3 spawnPos = collision.ClosestPoint(transform.position);
@@ -116,11 +119,33 @@ public abstract class Enemy : Pawn
         lastAttackTime = Time.time;
         animator.SetTrigger("Attack");
 
+        isAttackLeft = isLeft;
         float dir = isLeft ? 1f : -1f;
 
         if(hitBox) //근거리만 공격 히트박스 있음 (Pawn 에서 근거리, 원거리로 나누면 괜찮을 듯)
         {
             hitBox.transform.localPosition = hitboxOffset * dir;
         }
+    }
+
+    protected bool IsWallAhead()
+    {
+        Vector2 dir = isLeft ? Vector2.left : Vector2.right;
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            footPos.position,
+            dir,
+            wallCheckDistance,
+            groundLayer
+        );
+
+        Debug.DrawRay(footPos.position, dir * wallCheckDistance, Color.red);
+        return hit.collider != null;
+    }
+
+    protected void JumpOverWall()
+    {
+        rigid.linearVelocity = new Vector2(rigid.linearVelocity.x, 0);
+        rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 }
