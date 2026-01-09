@@ -47,7 +47,7 @@ public abstract class Pawn : MonoBehaviour
         );
 
         Debug.DrawRay(
-       transform.position,
+       rigid.position,
        Vector2.down * groundCheckDistance,
        isGrounded ? Color.green : Color.red);
 

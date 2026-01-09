@@ -76,7 +76,7 @@ public class Player : Pawn
         Move();
 
         //떨어질때 체크
-        if (rigid.linearVelocityY < 0)
+        if (rigid.linearVelocityY <= 0.01f)
         {
             CheckGround();
 
@@ -86,6 +86,8 @@ public class Player : Pawn
                 rigid.gravityScale = 1f;
             }
         }
+
+
 
     }
 

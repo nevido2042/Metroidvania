@@ -9495,7 +9495,7 @@ MonoBehaviour:
   hitboxOffset: {x: 0.1, y: 0, z: 0}
   isGrounded: 1
   jumpForce: 4
-  groundCheckDistance: 0.3
+  groundCheckDistance: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
