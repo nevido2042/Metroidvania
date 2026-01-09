@@ -295,13 +295,16 @@ MonoBehaviour:
   hp: 2
   isHurt: 0
   isDeath: 0
+  isKnockback: 0
   isLeft: 0
   RightOffset: {x: -0.36, y: 0.19, z: 0}
   LeftOffset: {x: 0.36, y: 0.19, z: 0}
+  knockbackForce: 3
+  knockbackTime: 1
+  upForce: 2
   moveSpeed: 1
   attackRange: 1
   attackCooldown: 1
-  effectPrefab: {fileID: 5911619047345563509, guid: fa31b0b9f2a4bba469bb7f6ef5b8608c, type: 3}
 --- !u!1 &6906133254546677849
 GameObject:
   m_ObjectHideFlags: 0

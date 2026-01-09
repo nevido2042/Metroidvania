@@ -27,6 +27,9 @@ public class Wizard : Enemy
         if (isDeath)
             return;
 
+        if (isKnockback)
+            return;
+
         // 공격 또는 맞는 중 정지
         if (isAttack || isHurt)
         {

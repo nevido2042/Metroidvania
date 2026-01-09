@@ -7,7 +7,7 @@ public abstract class Enemy : Pawn
     protected Player player;
 
     [Header("#Enemy Move")]
-    protected Rigidbody2D rigid;
+    //protected Rigidbody2D rigid;
     public float moveSpeed;
 
     [Header("#Attack")]
@@ -73,8 +73,19 @@ public abstract class Enemy : Pawn
             animator.SetTrigger("Hurt");
             hp--;
             Vector3 spawnPos = collision.ClosestPoint(transform.position);
+            Knockback(player.transform);
 
-            GameObject effect = GameManager.instance.poolManager.Get(0);
+            GameObject effect;
+            if (player.isDash)
+            {
+                effect = GameManager.instance.poolManager.Get(3);
+            }
+            else
+            {
+                effect = GameManager.instance.poolManager.Get(0);
+            }
+
+            //GameObject effect = GameManager.instance.poolManager.Get(0);
             effect.transform.position = spawnPos;
             //Instantiate(effectPrefab, spawnPos, Quaternion.identity);
 

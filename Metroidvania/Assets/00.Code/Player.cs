@@ -35,7 +35,7 @@ public class Player : Pawn
     [Header("#UI")]
     public Slider hpBar;
 
-    Rigidbody2D rigid;
+    //Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator animator;
 
