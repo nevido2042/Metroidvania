@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Enemy : Pawn
 {
     protected Player player;
-    public int hp = 2;
 
     [Header("#Enemy Move")]
     protected Rigidbody2D rigid;
@@ -19,7 +18,7 @@ public abstract class Enemy : Pawn
     [Header("#Render")]
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
-    public GameObject effectPrefab;
+    //public GameObject effectPrefab;
 
     protected void OnAwake()
     {
@@ -28,6 +27,11 @@ public abstract class Enemy : Pawn
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
         player = GameManager.instance.player;
+    }
+
+    protected void OnStart()
+    {
+        hp = maxHP;
     }
 
     protected abstract void OnFixedUpdate();
@@ -69,7 +73,10 @@ public abstract class Enemy : Pawn
             animator.SetTrigger("Hurt");
             hp--;
             Vector3 spawnPos = collision.ClosestPoint(transform.position);
-            Instantiate(effectPrefab, spawnPos, Quaternion.identity);
+
+            GameObject effect = GameManager.instance.poolManager.Get(0);
+            effect.transform.position = spawnPos;
+            //Instantiate(effectPrefab, spawnPos, Quaternion.identity);
 
             if (hp <=0 && !isDeath)
             {

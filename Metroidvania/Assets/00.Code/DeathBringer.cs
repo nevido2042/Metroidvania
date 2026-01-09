@@ -7,6 +7,11 @@ public class DeathBringer : Enemy
     {
         base.OnAwake();
     }
+
+    private void Start()
+    {
+        base.OnStart();
+    }
     private void FixedUpdate()
     {
         OnFixedUpdate();        

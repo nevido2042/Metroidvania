@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f7c3ef94e8e810d4aa78f71f0ae3a93a
+guid: c27f8c944eeb78f4b93686c123ba0f70
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1309589254835047570
-    second: crash_01_0
+      213: -7081362869056984769
+    second: crash_04_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,11 +96,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crash_01_0
+      name: crash_04_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29c8c102d789c2210800000000000000
-      internalID: 1309589254835047570
+      spriteID: f39a7304df1f9bd90800000000000000
+      internalID: -7081362869056984769
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      crash_01_0: 1309589254835047570
+      crash_04_0: -7081362869056984769
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

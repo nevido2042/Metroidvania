@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int totalWave;
     public int curWave;
     public int remainEnemy;
+    public PoolManager poolManager;
 
     [Header("#UI Control")]
     public WaveInfo waveInfo;

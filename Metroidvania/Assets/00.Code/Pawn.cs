@@ -10,6 +10,8 @@ public abstract class Pawn : MonoBehaviour
     public Vector3 hitboxOffset;
 
     [Header("#State")]
+    public int maxHP;
+    public int hp;
     public bool isHurt;
     public bool isDeath = false;
 

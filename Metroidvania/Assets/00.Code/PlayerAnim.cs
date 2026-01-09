@@ -4,7 +4,7 @@ public class PlayerAnim : PawnAnim
 {
     Player player;
     Ghost ghost;
-    public GameObject downAttackEffect;
+    //public GameObject downAttackEffect;
 
     private void Awake()
     {
@@ -63,7 +63,11 @@ public class PlayerAnim : PawnAnim
     public void EffectDownAttack()
     {
         Vector3 spawnPos = transform.position;
-        Instantiate(downAttackEffect, spawnPos, Quaternion.identity);
+
+        GameObject effect = GameManager.instance.poolManager.Get(1);
+        effect.transform.position = spawnPos;
+
+        //Instantiate(downAttackEffect, spawnPos, Quaternion.identity);
     }
 
 }

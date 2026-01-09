@@ -291,14 +291,15 @@ MonoBehaviour:
   isAttack: 0
   hitBox: {fileID: 4303846588754804800}
   hitboxOffset: {x: -0.5, y: 0, z: 0}
+  maxHP: 2
+  hp: 2
   isHurt: 0
   isDeath: 0
   isLeft: 0
   RightOffset: {x: -0.36, y: 0.19, z: 0}
   LeftOffset: {x: 0.36, y: 0.19, z: 0}
-  hp: 2
   moveSpeed: 1
-  attackRange: 0.5
+  attackRange: 1
   attackCooldown: 1
   effectPrefab: {fileID: 5911619047345563509, guid: fa31b0b9f2a4bba469bb7f6ef5b8608c, type: 3}
 --- !u!1 &6906133254546677849

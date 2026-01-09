@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -30,6 +32,8 @@ public class Player : Pawn
     public float downAttackGravity = 3f;
     InputAction attackAction;
 
+    [Header("#UI")]
+    public Slider hpBar;
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -49,8 +53,17 @@ public class Player : Pawn
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        animator.transform.localPosition = RightOffset;
+        hp = maxHP;
+    }
+
     private void Update()
     {
+        if (isDeath)
+            return;
+
         if(dashAction.IsPressed())
         {
             Dash();
@@ -62,13 +75,11 @@ public class Player : Pawn
         }
     }
 
-    private void Start()
-    {
-        animator.transform.localPosition = RightOffset;
-    }
-
     private void FixedUpdate()
     {
+        if (isDeath)
+            return;
+
         Move();
 
         //떨어질때 체크
@@ -81,14 +92,20 @@ public class Player : Pawn
 
     void LateUpdate()
     {
+        if (isDeath)
+            return;
+
         Flip();
 
-        animator.SetFloat("Speed", inputVec.magnitude);
+        animator.SetFloat("Speed", MathF.Abs(rigid.linearVelocityX));
         animator.SetFloat("VelocityY", rigid.linearVelocityY);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isDeath)
+            return;
+
         if (collision.tag != "Enemy")
             return;
 
@@ -96,6 +113,16 @@ public class Player : Pawn
         isAttack = false;
         audioSource.Play();
         animator.SetTrigger("Hurt");
+        hp--;
+        hpBar.value = (float)hp / (float)maxHP;
+
+        if(hp <= 0)
+        {
+            isDeath = true;
+            hp = 0;
+            animator.SetTrigger("Death");
+            GameManager.instance.retryButton.gameObject.SetActive(true);
+        }
     }
 
     void OnMove(InputValue value)

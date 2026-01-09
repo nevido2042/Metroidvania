@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8c0156a388277d642b988e06f6654041
+guid: f7c3ef94e8e810d4aa78f71f0ae3a93a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3566596387136911303
-    second: circle_glow_0
+      213: 1309589254835047570
+    second: crash_01_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,11 +96,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: circle_glow_0
+      name: crash_01_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7c7bc7874881f7130800000000000000
-      internalID: 3566596387136911303
+      spriteID: 29c8c102d789c2210800000000000000
+      internalID: 1309589254835047570
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      circle_glow_0: 3566596387136911303
+      crash_01_0: 1309589254835047570
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

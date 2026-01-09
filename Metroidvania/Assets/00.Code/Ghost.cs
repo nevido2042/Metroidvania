@@ -4,7 +4,7 @@ public class Ghost : MonoBehaviour
 {
     public float ghostDelay;
     private float ghostDelayTime;
-    public GameObject ghost;
+    //public GameObject ghost;
     public bool makeGhost;
 
     Player player;
@@ -33,7 +33,8 @@ public class Ghost : MonoBehaviour
             }
             else
             {
-                GameObject currentGhost = Instantiate(ghost, transform.position, transform.rotation);
+                GameObject currentGhost = GameManager.instance.poolManager.Get(2); //Instantiate(ghost, transform.position, transform.rotation);
+                currentGhost.transform.position = transform.position;
 
                 SpriteRenderer playerSR = GetComponent<SpriteRenderer>();
                 SpriteRenderer ghostSR = currentGhost.GetComponent<SpriteRenderer>();
@@ -54,7 +55,7 @@ public class Ghost : MonoBehaviour
                 ghostSR.flipX = player.isLeft;
 
                 ghostDelayTime = ghostDelay;
-                Destroy(currentGhost, 1f);
+                //Destroy(currentGhost, 1f);
             }
         }
     }
