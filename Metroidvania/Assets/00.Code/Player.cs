@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -168,6 +167,7 @@ public class Player : Pawn
         //바라보는 방향으로 대쉬
         float dir = spriteRenderer.flipX ? -1f : 1f;
         animator.SetTrigger("Dash");
+        AudioManager.instance.PlaySfx(AudioManager.SFX.Dash);
 
         rigid.AddForceX(dashPower * dir, ForceMode2D.Impulse);
     }

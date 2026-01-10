@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayers;
     int channelIndex;
 
-    public enum SFX { Hit, Melee = 2, Win = 4, Lose, DownAttack, Slash, Magic};
+    public enum SFX { Hit, Melee = 2, Win = 4, Lose, DownAttack, Slash, Magic, Dash};
 
     private void Awake()
     {
