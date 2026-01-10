@@ -26,12 +26,12 @@ public abstract class Enemy : Pawn
         //audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
-        player = GameManager.instance.player;
     }
 
     protected void OnStart()
     {
         hp = maxHP;
+        player = GameManager.instance.player;
     }
 
     protected abstract void OnFixedUpdate();
