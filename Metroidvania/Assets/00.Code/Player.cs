@@ -66,6 +66,24 @@ public class Player : Pawn
         {
             Attack();
         }
+
+
+        //치트키
+        var keyboard = Keyboard.current;
+        if (keyboard == null) return;
+
+        // F1 : 체력 감소
+        if (keyboard.f1Key.wasPressedThisFrame)
+        {
+            Hurt();
+        }
+
+        // F2 : 체력 증가
+        if (keyboard.f2Key.wasPressedThisFrame)
+        {
+            hp++;
+            hpBar.value = (float)hp / maxHP;
+        }
     }
 
     private void FixedUpdate()
@@ -113,20 +131,7 @@ public class Player : Pawn
         isHurt = true;
         isAttack = false;
 
-        //audioSource.Play();
-        AudioManager.instance.PlaySfx(AudioManager.SFX.Hit);
-
-        animator.SetTrigger("Hurt");
-        hp--;
-        hpBar.value = (float)hp / (float)maxHP;
-
-        if(hp <= 0)
-        {
-            isDeath = true;
-            hp = 0;
-            animator.SetTrigger("Death");
-            GameManager.instance.retryButton.gameObject.SetActive(true);
-        }
+        Hurt();
     }
 
     void OnMove(InputValue value)
@@ -205,6 +210,23 @@ public class Player : Pawn
             else
                 animator.transform.localPosition = RightOffset;
 
+        }
+    }
+
+    void Hurt()
+    {
+        AudioManager.instance.PlaySfx(AudioManager.SFX.Hit);
+
+        animator.SetTrigger("Hurt");
+        hp--;
+        hpBar.value = (float)hp / (float)maxHP;
+
+        if (hp <= 0)
+        {
+            isDeath = true;
+            hp = 0;
+            animator.SetTrigger("Death");
+            GameManager.instance.retryButton.gameObject.SetActive(true);
         }
     }
 

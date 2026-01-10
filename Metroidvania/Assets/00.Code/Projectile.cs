@@ -29,17 +29,20 @@ public class Projectile : MonoBehaviour
 
         if (isBehind)
         {
-            // 완전 반대편 → 수평 직선
+            // 수평 직선
             direction = new Vector2(facingDir, 0f);
         }
         else
         {
-            // 앞쪽 → 플레이어 방향
+            // 플레이어 방향
             direction = toPlayer.normalized;
         }
 
-        // 방향에 따라 스프라이트 좌우 반전
-        spriteRenderer.flipX = direction.x < 0f;
+        // 각도 계산
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Z축 회전 적용
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
         // 속도 초기화
         rigid.linearVelocity = direction * speed;

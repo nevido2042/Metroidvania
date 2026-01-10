@@ -15,6 +15,8 @@ public abstract class Pawn : MonoBehaviour
     public float jumpForce;
     public float groundCheckDistance;
     public LayerMask groundLayer;
+    public Transform leftRay;
+    public Transform rightRay;
 
     [Header("#State")]
     public int maxHP;
@@ -39,19 +41,33 @@ public abstract class Pawn : MonoBehaviour
 
     protected void CheckGround()
     {
-        RaycastHit2D hit = Physics2D.Raycast(
-            rigid.position,
+        //¿ÞÂÊ
+        RaycastHit2D leftHit = Physics2D.Raycast(
+            leftRay.position,
             Vector2.down,
             groundCheckDistance,
             groundLayer
         );
 
         Debug.DrawRay(
-       rigid.position,
+       leftRay.position,
        Vector2.down * groundCheckDistance,
        isGrounded ? Color.green : Color.red);
 
-        isGrounded = hit.collider != null;
+        //¿À¸¥ ÂÊ
+        RaycastHit2D rightHit = Physics2D.Raycast(
+        rightRay.position,
+        Vector2.down,
+        groundCheckDistance,
+        groundLayer
+        );
+
+        Debug.DrawRay(
+       rightRay.position,
+       Vector2.down * groundCheckDistance,
+       isGrounded ? Color.green : Color.red);
+
+        isGrounded = leftHit.collider || rightHit.collider;
     }
 
     public void Knockback(Transform attacker)

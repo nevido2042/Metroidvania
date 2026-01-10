@@ -19,6 +19,6 @@ public class WaveInfo : MonoBehaviour
 
     public void SetCountdownText(int remain)
     {
-        countdown.text = string.Format("Wave Start In {0}", remain);
+        countdown.text = string.Format("Wave Start In...{0}", remain);
     }
 }

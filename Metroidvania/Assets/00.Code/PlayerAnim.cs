@@ -4,7 +4,8 @@ public class PlayerAnim : PawnAnim
 {
     Player player;
     Ghost ghost;
-    //public GameObject downAttackEffect;
+
+    public float downAttackEffectOffset;
 
     private void Awake()
     {
@@ -44,25 +45,34 @@ public class PlayerAnim : PawnAnim
 
     public void CameraShakeLight()
     {
-        GameManager.instance.CameraShake(0.3f, 10f, 0.2f);
+        GameManager.instance.CameraShake(0.3f, 10f, 0.1f);
 
     }
 
     public void CameraShake()
     {
         //ÁøÆø, ºóµµ¼ö, ±â°£
-        GameManager.instance.CameraShake(0.5f, 10f, 0.2f);
+        GameManager.instance.CameraShake(0.5f, 10f, 0.3f);
     }
 
     public void CameraShakeHeavy()
     {
-        GameManager.instance.CameraShake(1f, 10f, 0.2f);
+        GameManager.instance.CameraShake(1f, 10f, 0.5f);
 
     }
 
     public void EffectDownAttack()
     {
         Vector3 spawnPos = transform.position;
+
+        if (player.isLeft)
+        {
+            spawnPos.x += -downAttackEffectOffset;
+        }
+        else
+        {
+            spawnPos.x += downAttackEffectOffset;
+        }
 
         GameObject effect = GameManager.instance.poolManager.Get(1);
         effect.transform.position = spawnPos;
