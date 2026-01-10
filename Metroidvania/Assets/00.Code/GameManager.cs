@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour
             if (curWave == totalWave)
             {
                 retryButton.gameObject.SetActive(true);
+                AudioManager.instance.PlayBgm(false);
+                AudioManager.instance.PlaySfx(AudioManager.SFX.Win);
                 return;
             }
 

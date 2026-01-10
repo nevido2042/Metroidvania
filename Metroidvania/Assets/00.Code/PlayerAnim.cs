@@ -77,7 +77,7 @@ public class PlayerAnim : PawnAnim
         GameObject effect = GameManager.instance.poolManager.Get(1);
         effect.transform.position = spawnPos;
 
-        //Instantiate(downAttackEffect, spawnPos, Quaternion.identity);
+        AudioManager.instance.PlaySfx(AudioManager.SFX.DownAttack);
     }
 
 }

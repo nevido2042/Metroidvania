@@ -122,14 +122,8 @@ public class Player : Pawn
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isDeath)
-            return;
-
         if (collision.tag != "Enemy")
             return;
-
-        isHurt = true;
-        isAttack = false;
 
         Hurt();
     }
@@ -215,6 +209,12 @@ public class Player : Pawn
 
     void Hurt()
     {
+        if (isDeath)
+            return;
+
+        isHurt = true;
+        isAttack = false;
+
         AudioManager.instance.PlaySfx(AudioManager.SFX.Hit);
 
         animator.SetTrigger("Hurt");
@@ -225,8 +225,17 @@ public class Player : Pawn
         {
             isDeath = true;
             hp = 0;
+
+            animator.SetFloat("Speed", 0);
+            animator.SetFloat("VelocityY", 0);
+            animator.ResetTrigger("Attack");
+            animator.ResetTrigger("Dash");
+            animator.ResetTrigger("Hurt");
             animator.SetTrigger("Death");
+
             GameManager.instance.retryButton.gameObject.SetActive(true);
+            AudioManager.instance.PlayBgm(false);
+            AudioManager.instance.PlaySfx(AudioManager.SFX.Lose);
         }
     }
 

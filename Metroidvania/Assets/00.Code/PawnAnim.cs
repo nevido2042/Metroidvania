@@ -22,6 +22,8 @@ public abstract class PawnAnim : MonoBehaviour
     public void ActiveHitBox()
     {
         pawn.hitBox.enabled = true;
+
+        AudioManager.instance.PlaySfx(AudioManager.SFX.Slash);
     }
 
     public void InactiveHitBox()

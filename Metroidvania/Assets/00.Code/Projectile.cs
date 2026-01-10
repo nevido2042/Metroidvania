@@ -46,6 +46,8 @@ public class Projectile : MonoBehaviour
 
         // 속도 초기화
         rigid.linearVelocity = direction * speed;
+
+        AudioManager.instance.PlaySfx(AudioManager.SFX.Magic);
     }
 
     private void Start()
