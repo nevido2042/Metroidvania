@@ -13,6 +13,8 @@ public class Player : Pawn
     [Header("#Move")]
     public Vector2 inputVec;
     public float speed;
+    public Transform leftLimit;
+    public Transform rightLimit;
 
     [Header("#Dash")]
     public float dashPower;
@@ -104,8 +106,7 @@ public class Player : Pawn
             }
         }
 
-
-
+        LimitMove();
     }
 
     void LateUpdate()
@@ -239,4 +240,10 @@ public class Player : Pawn
         }
     }
 
+    void LimitMove()
+    {
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, leftLimit.position.x, rightLimit.position.x);
+        transform.position = pos;
+    }
 }
