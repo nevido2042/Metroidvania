@@ -275,13 +275,13 @@ MonoBehaviour:
   isAttackLeft: 0
   RightOffset: {x: -0.36, y: 0.19, z: 0}
   LeftOffset: {x: 0.36, y: 0.19, z: 0}
-  knockbackForce: 3
+  knockbackForce: 2
   knockbackTime: 1
   upForce: 2
   moveSpeed: 1
   wallCheckDistance: 0.2
   footPos: {fileID: 3054833963613642362}
-  attackRange: 1
+  attackRange: 0.7
   attackCooldown: 1
 --- !u!1 &6089616578718114372
 GameObject:

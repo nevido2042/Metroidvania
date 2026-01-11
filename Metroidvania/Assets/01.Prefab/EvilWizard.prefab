@@ -262,13 +262,13 @@ MonoBehaviour:
   isAttackLeft: 0
   RightOffset: {x: 0, y: 0, z: 0}
   LeftOffset: {x: 0, y: 0, z: 0}
-  knockbackForce: 3
+  knockbackForce: 2
   knockbackTime: 1
   upForce: 2
   moveSpeed: 1
   wallCheckDistance: 0.2
   footPos: {fileID: 2030131133321511811}
-  attackRange: 2
+  attackRange: 1
   attackCooldown: 1
   prefabProjectile: {fileID: 2126177956736327886, guid: 9601f9890a7249349b03966a14f4eb5f, type: 3}
   shootOffset: {x: 0.46, y: 0.13, z: 0}
